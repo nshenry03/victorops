@@ -16,4 +16,7 @@ Gemfile.lock
 bin/*
 .bundle/*
 
+# Test Kitchen
+.kitchen/*
+
 VERSION

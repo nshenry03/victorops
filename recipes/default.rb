@@ -16,3 +16,31 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+# TODO(nshenry03):
+#   - When VictorOps signs their packages, get rid of the `trusted true` and
+#     `gpgcheck false` statements.
+#   - VictorOps only seems to have a package for `precise`; however, that seems
+#     to work fine on Ubuntu 14.04; when they support other distributions,
+#     switch from `distribution 'precise'` to something like `distribution
+#     node['lsb']['codename']`
+
+case node['platform']
+when 'ubuntu', 'debian'
+  include_recipe 'apt::default'
+  apt_repository 'victorops' do
+    uri 'http://software.victorops.com/apt'
+    components ['main']
+    distribution 'precise'
+    trusted true
+    action :add
+  end
+when 'redhat', 'centos', 'scientific', 'amazon', 'oracle'
+  include_recipe 'yum::default'
+  yum_repository 'victorops' do
+    description 'VictorOps Base repo'
+    baseurl 'http://software.victorops.com/yum/'
+    gpgcheck false
+    action :create
+  end
+end

@@ -6,3 +6,5 @@ description      'Installs/Configures victorops'
 long_description 'Installs/Configures victorops'
 version          IO.read(File.join(File.dirname(__FILE__), 'VERSION'))
 
+depends          'apt'
+depends          'yum'
