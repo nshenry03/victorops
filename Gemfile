@@ -15,4 +15,3 @@ gem 'berkshelf'
 # end
 
 gem 'thor-foodcritic'
-gem 'thor-scmversion'
